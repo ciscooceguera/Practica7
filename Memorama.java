@@ -1,5 +1,7 @@
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
 public class Memorama extends JFrame{
@@ -7,6 +9,7 @@ public class Memorama extends JFrame{
     private ArrayList<JButton> tarjetas;
     private int jugadores, puntosMaximos;
     private String figura;
+    private ArrayList<JButton> tarjetasVolteadas;
 
     public Memorama(int numJugadores, int puntuacionMaxima, String figura) {
         super("Memorama");
@@ -18,21 +21,43 @@ public class Memorama extends JFrame{
         inicializarComponentes();
         configurarVentana();
         this.setLocationRelativeTo(null);
+        tarjetasVolteadas = new ArrayList<>();
     }
+    public void iniciarMazo(){
+        switch(figura){
+            case "Carta":
+                for (int i = 0; i < 16; i++) {
 
+                }
+        }
+    }
     public void inicializarComponentes(){
         puntosJugadores = new JTextArea(20,20);
         puntosJugadores.setEditable(false);
         cartasVolteadas = new JTextArea(20,20);
         cartasVolteadas.setEditable(false);
+        Mazo mazo = new Mazo(figura);
+        mazo.iniciarMazo();
+        mazo.revolverMazo();
+        ArrayList<ImageIcon> imagenes = mazo.getIconos();
         for(int i=0; i<16; i++){
             JButton b = new JButton();
             b.setSize(150,150);
             b.setBackground(new Color(255, 152, 18));
+
+            final int index = i;
+            b.addActionListener(new ActionListener() {
+                public void actionPerformed(ActionEvent e) {
+                    b.setIcon(imagenes.get(index));
+                    b.setDisabledIcon(imagenes.get(index));
+                    b.setEnabled(false);
+                }
+            });
             tarjetas.add(b);
         }
         System.out.println(tarjetas.size());
     }
+
 
     public void configurarVentana(){
         this.setLayout(new BorderLayout());
@@ -60,4 +85,5 @@ public class Memorama extends JFrame{
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setVisible(true);
     }
+
 }
