@@ -58,7 +58,6 @@ public class Memorama extends JFrame{
         System.out.println(tarjetas.size());
     }
 
-
     public void configurarVentana(){
         this.setLayout(new BorderLayout());
         JPanel tablero = new JPanel();
