@@ -19,6 +19,7 @@ public class Memorama extends JFrame{
     private HashMap<Integer, Integer> jugadores;
     private int[] cartasVolteadasConteo = new int[4];
     private boolean bloqueo = false;
+    private JButton salir;
 
     public Memorama(int numJugadores, int puntuacionMaxima, String figura) {
         super("Memorama");
@@ -61,6 +62,14 @@ public class Memorama extends JFrame{
             tarjetas.add(b);
         }
         System.out.println(tarjetas.size());
+        salir = new JButton("Salir");
+        salir.setPreferredSize(new Dimension(200, 50));
+        salir.setEnabled(false);
+        salir.setBackground(new Color(70,130,180));
+        salir.setForeground(Color.WHITE);
+        salir.setFocusPainted(false);
+        salir.setFont(new Font("Arial",Font.BOLD,15));
+        salir.setBorder(BorderFactory.createLineBorder(Color.WHITE, 2));
     }
     public void seleccionarCarta(JButton boton){
         if (bloqueo || tarjetasVolteadas.contains(boton)){
@@ -140,9 +149,14 @@ public class Memorama extends JFrame{
         cartasVolteadas.setBorder(BorderFactory.createTitledBorder("Cartas Volteadas:"));
         textos.add(puntosJugadores);
         textos.add(cartasVolteadas);
+        JPanel boton = new JPanel();
+        boton.setLayout(new FlowLayout(FlowLayout.CENTER));
+        boton.setPreferredSize(new Dimension(660, 70));
+        boton.add(salir);
         this.add(tablero, BorderLayout.NORTH);
-        this.add(textos, BorderLayout.SOUTH);
-        this.setSize(750, 850);
+        this.add(textos, BorderLayout.CENTER);
+        this.add(boton, BorderLayout.SOUTH);
+        this.setSize(750, 950);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setVisible(true);
     }
