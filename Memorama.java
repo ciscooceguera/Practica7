@@ -1,14 +1,13 @@
 import Carta.*;
 import javax.swing.*;
+import javax.swing.Timer;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.HashMap;
+import java.util.*;
 
 public class Memorama extends JFrame{
-    private JTextArea puntosJugadores, cartasVolteadas;
+    private JTextArea turnoText, cartasVolteadas;
     private ArrayList<JButton> tarjetas;
     private int numJugadores, turno;
     private String figura;
@@ -19,9 +18,11 @@ public class Memorama extends JFrame{
     private HashMap<Integer,Integer> numCartasVolteadas;
     private boolean bloqueo = false;
     private JButton salir;
+    private JButton instrucciones;
 
     public Memorama(int numJugadores, String figura) {
         super("Memorama");
+        turno = 1;
         tarjetas = new ArrayList<>();
         this.numJugadores = numJugadores;
         this.figura = figura;
@@ -33,19 +34,20 @@ public class Memorama extends JFrame{
         inicializarComponentes();
         configurarVentana();
         setLocationRelativeTo(null);
-        puntosJugadores.setText(getPuntajes());
+        turnoText.setText(turnoToString());
         cartasVolteadas.setText(getCartasVolteadas());
-        turno = 1;
         contadorCartasAdivinadas = 0;
-        mostrarTurno();
+
+
+
     }
     
     public void cambiarTurno(){
         turno = (turno%numJugadores)+1;
     }
     public void inicializarComponentes(){
-        puntosJugadores = new JTextArea(20,20);
-        puntosJugadores.setEditable(false);
+        turnoText = new JTextArea(20,20);
+        turnoText.setEditable(false);
         cartasVolteadas = new JTextArea(20,20);
         cartasVolteadas.setEditable(false);
         ArrayList<Carta> cartas = generarCartas();
@@ -54,6 +56,8 @@ public class Memorama extends JFrame{
             JButton b = new JButton();
             b.setSize(150,150);
             b.setBackground(new Color(255, 152, 18));
+            b.setFont(new Font("Arial",Font.BOLD,70));
+            b.setForeground(Color.WHITE);
             b.putClientProperty("carta",cartas.get(i));
             b.addActionListener(new ActionListener() {
                 @Override
@@ -76,6 +80,13 @@ public class Memorama extends JFrame{
         salir.setFocusPainted(false);
         salir.setFont(new Font("Arial",Font.BOLD,15));
         salir.setBorder(BorderFactory.createLineBorder(Color.WHITE, 2));
+        instrucciones = new JButton("Instrucciones");
+        instrucciones.setPreferredSize(new Dimension(200, 50));
+        instrucciones.setBackground(new Color(70,130,180));
+        instrucciones.setForeground(Color.WHITE);
+        instrucciones.setFocusPainted(false);
+        instrucciones.setFont(new Font("Arial",Font.BOLD,15));
+        instrucciones.setBorder(BorderFactory.createLineBorder(Color.WHITE, 2));
     }
     public String puntajesToString(){
         String mensajePuntajes = "";
@@ -89,7 +100,11 @@ public class Memorama extends JFrame{
             return;
         }
         Carta carta= (Carta) boton.getClientProperty("carta");
-        boton.setIcon(carta.obtenerIcono());
+        if (figura == "Numero"){
+            boton.setText(carta.obtenerDescripcion());
+        }else{
+            boton.setIcon(carta.obtenerIcono());
+        }
         tarjetasVolteadas.add(boton);
         if (tarjetasVolteadas.size() == 2 && tarjetasVolteadas.get(0)!=boton){
             bloqueo = true;
@@ -107,23 +122,56 @@ public class Memorama extends JFrame{
                 numCartasVolteadas.put(turno, numCartasAtinadas+1);
                 tarjetasVolteadas.clear();
                 cartasVolteadas.setText(puntajesToString());
-                contadorCartasAdivinadas+=1;
+                contadorCartasAdivinadas+=2;
+                if (contadorCartasAdivinadas==16){
+                    JOptionPane.showMessageDialog(null,mensajeGanador());
+                    salir.setEnabled(true);
+                }
             }else{
+                cambiarTurno();
+                turnoText.setText(turnoToString());
+
                 // retraso
                 Timer timer = new Timer(1000, new ActionListener() {
                     @Override
                     public void actionPerformed(ActionEvent e) {
                         b1.setIcon(null);
                         b2.setIcon(null);
+                        b1.setText("");
+                        b2.setText("");
                         tarjetasVolteadas.clear();
                         bloqueo = false;
-                        cambiarTurno();
                     }
                 });
                 timer.setRepeats(false);
                 timer.start();
+
             }
         }
+    }
+    public String mensajeGanador(){
+        return "Ha ganado el jugador " + getGanador();
+    }
+    public String getGanador(){
+        Integer posicion = 0;
+        Integer max = 0;
+        for (int i = 1 ; i<=numJugadores; i++){
+            Integer valor = numCartasVolteadas.get(i);
+            if (max<valor){
+                max = valor;
+            }
+        }
+        for (int i = 1 ; i<=numJugadores; i++){
+            Integer valor = numCartasVolteadas.get(i);
+            if (valor == max){
+                posicion = i;
+            }
+        }
+        return String.valueOf(posicion);
+    }
+    public String turnoToString(){
+        String mensajeTurno = "-> Turno: \n   Jugador "+turno+"\n";
+        return mensajeTurno;
     }
     public ArrayList<Carta> generarCartas(){
         ArrayList<Carta> cartas = new ArrayList<>();
@@ -144,6 +192,31 @@ public class Memorama extends JFrame{
                 }
                 break;
             case "Numero":
+                // Creando los numeros con random
+                HashSet<Integer> numeros = new HashSet<>();
+                Random rnd = new Random();
+                int countPares = 0;
+                int countImpares = 0;
+                while (numeros.size()<16){
+                    int num = rnd.nextInt(1,100)+1;
+                    if (num%2 == 0){
+                        if (countPares<8){
+                            if (numeros.add(num)){
+                                countPares++;
+                            }
+                        }
+                    }else{
+                        if (countImpares<8){
+                            if (numeros.add(num)){
+                                countImpares++;
+                            }
+                        }
+                    }
+                }
+                for (Integer numero : numeros){
+                    cartas.add(new Numero(numero));
+                }
+                /* Con imagenes
                 cartas.add(new Numero(1));
                 cartas.add(new Numero(6));
                 cartas.add(new Numero(7));
@@ -159,7 +232,7 @@ public class Memorama extends JFrame{
                 cartas.add(new Numero(77));
                 cartas.add(new Numero(78));
                 cartas.add(new Numero(88));
-                cartas.add(new Numero(99));
+                cartas.add(new Numero(99));*/
                 break;
             case "Raza de Dragon Ball":
                 String[] razas = {"Angel","Buu","DemonioDelFrio","Dios","Humano","Kaio","Namek","Saiyan"};
@@ -190,19 +263,67 @@ public class Memorama extends JFrame{
             JButton b = tarjetas.get(i);
             tablero.add(b);
         }
-        puntosJugadores.setFont(new Font("Monospaced", Font.PLAIN, 16));
-        puntosJugadores.setBackground(new Color(0, 255, 255));
-        puntosJugadores.setBorder(BorderFactory.createTitledBorder("Puntajes:"));
+        turnoText.setFont(new Font("Monospaced", Font.BOLD, 30));
+        turnoText.setBackground(new Color(0, 255, 255));
+        turnoText.setBorder(BorderFactory.createTitledBorder("Puntajes:"));
         cartasVolteadas.setFont(new Font("Monospaced", Font.PLAIN, 16));
         cartasVolteadas.setBackground(new Color(0, 255, 255));
         cartasVolteadas.setBorder(BorderFactory.createTitledBorder("Cartas Volteadas:"));
         cartasVolteadas.setText(puntajesToString());
-        textos.add(puntosJugadores);
+        textos.add(turnoText);
         textos.add(cartasVolteadas);
         JPanel boton = new JPanel();
         boton.setLayout(new FlowLayout(FlowLayout.CENTER));
+        // salir
+        salir.addActionListener(e-> {
+            this.dispose();
+        });
+        instrucciones.addActionListener(e->{
+            switch(figura){
+                case "Bandera":
+                    JOptionPane.showMessageDialog(null,
+                            "1. El juego se dispone de 16 cartas: 8 banderas y 8 escudos.\n" +
+                                    "2. En cada turno, el jugador podrá voltear un máximo de 2 cartas.\n " +
+                                    "   Si ambas cartas resultan par podrá repetir turno.\n" +
+                                    "3. Se considera un par válido si:\n" +
+                                    "   - Logras voltear una bandera y su respectivo escudo.\n" +
+                                    "4. Si las cartas no resultan en un par se colocan boca abajo nuevamente.\n" +
+                                    "5. El juego termina cuando todos los pares hayan sido encontrados.",
+                            "Instrucciones",
+                            JOptionPane.INFORMATION_MESSAGE);
+                    break;
+                case "Numero":
+                    JOptionPane.showMessageDialog(null,
+                            "1. El juego se dispone de 16 cartas.\n" +
+                                    "2. En cada turno, el jugador podrá voltear un máximo de 2 cartas.\n " +
+                                    "   Si ambas cartas resultan par podrá repetir turno.\n" +
+                                    "3. Se considera un par válido cuando:\n" +
+                                    "   - Ambas cartas volteadas son números par.\n" +
+                                    "   - Ambas cartas volteadas son números impar.\n" +
+                                    "4. Si las cartas no resultan en un par se colocan boca abajo nuevamente.\n" +
+                                    "5. El juego termina cuando todos los pares hayan sido encontrados.",
+                            "Instrucciones",
+                            JOptionPane.INFORMATION_MESSAGE);
+                    break;
+                case "Raza de Dragon Ball":
+                    JOptionPane.showMessageDialog(null,
+                            "1. El juego se dispone de 16 cartas.\n" +
+                                    "2. En cada turno, el jugador podrá voltear un máximo de 2 cartas.\n " +
+                                    "   Si ambas cartas resultan par podrá repetir turno.\n" +
+                                    "3. Se considera un par válido cuando:\n" +
+                                    "   - Ambas cartas poseen personajes pertenecientes al mismo tipo de raza\n" +
+                                    "4. Si las cartas no resultan en un par se colocan boca abajo nuevamente.\n" +
+                                    "5. El juego termina cuando todos los pares hayan sido encontrados.",
+                            "Instrucciones",
+                            JOptionPane.INFORMATION_MESSAGE);
+                    break;
+            }
+
+        });
         boton.setPreferredSize(new Dimension(660, 70));
+        boton.add(instrucciones);
         boton.add(salir);
+
         this.add(tablero, BorderLayout.NORTH);
         this.add(textos, BorderLayout.CENTER);
         this.add(boton, BorderLayout.SOUTH);
@@ -234,10 +355,5 @@ public class Memorama extends JFrame{
         return cartasVolteadas;
     }
 
-    public void mostrarTurno(){
-        JOptionPane.showMessageDialog(null,
-                "Turno del jugador "+(turno),
-                "Turno actual",
-                JOptionPane.INFORMATION_MESSAGE);
-    }
+
 }
