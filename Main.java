@@ -16,7 +16,7 @@ public class Main {
         ventana.setVisible(true);
 
         // imagen
-        ImageIcon pic = new ImageIcon("C:\\Users\\joser\\IdeaProjects\\Practica 7\\ImageMain.png");
+        ImageIcon pic = new ImageIcon("C:\\Users\\RedBo\\OneDrive\\Escritorio\\POO\\Practica7\\ImageMain.png");
         JLabel image = new JLabel(pic);
         image.setBounds(0,0,500,500);
         ventana.setContentPane(image);
