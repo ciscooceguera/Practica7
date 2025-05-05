@@ -19,9 +19,9 @@ public class Bandera extends Carta {
     @Override
     public Icon obtenerIcono(){
         if (esBandera) {
-            return new ImageIcon("C:\\Users\\RedBo\\OneDrive\\Escritorio\\POO\\Practica7\\Banderas\\" + bandera + ".png");
+            return new ImageIcon("C:\\Users\\joser\\IdeaProjects\\Practica 7\\Banderas\\" + bandera + ".png");
         }else{
-            return new ImageIcon("C:\\Users\\RedBo\\OneDrive\\Escritorio\\POO\\Practica7\\Banderas\\" + bandera + "Escudo.png");
+            return new ImageIcon("C:\\Users\\joser\\IdeaProjects\\Practica 7\\Banderas\\" + bandera + "Escudo.png");
         }
     }
 }
