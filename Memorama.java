@@ -71,7 +71,6 @@ public class Memorama extends JFrame{
         for (int i = 1; i<= numJugadores; i++){
             numCartasVolteadas.put(i,0);
         }
-        System.out.println(tarjetas.size());
         salir = new JButton("Salir");
         salir.setPreferredSize(new Dimension(200, 50));
         salir.setEnabled(false);
