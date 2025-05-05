@@ -31,4 +31,9 @@ public class Numero extends Carta {
     public Icon obtenerIcono(){
         return new ImageIcon("C:\\Users\\RedBo\\OneDrive\\Escritorio\\POO\\Practica7\\Numeros\\num"+numero+".png");
     }
+
+    @Override
+    public String obtenerDescripcion() {
+        return String.valueOf(numero);
+    }
 }

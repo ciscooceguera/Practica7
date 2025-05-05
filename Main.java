@@ -75,6 +75,7 @@ public class Main {
                 salir.setBackground(new Color(70, 130, 180));  // Vuelve al original
             }
         });
+
         // agrego componentes a la ventana
         ventana.add(jugar);
         ventana.add(creditos);

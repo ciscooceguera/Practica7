@@ -17,4 +17,8 @@ public class RazaDeDragonBall extends Carta {
     public Icon obtenerIcono(){
         return new ImageIcon("C:\\Users\\RedBo\\OneDrive\\Escritorio\\POO\\Practica7\\RazaDragonBall\\"+raza+nombre+".png");
     }
+    @Override
+    public String obtenerDescripcion() {
+        return raza;
+    }
 }

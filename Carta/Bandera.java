@@ -24,4 +24,8 @@ public class Bandera extends Carta {
             return new ImageIcon("C:\\Users\\RedBo\\OneDrive\\Escritorio\\POO\\Practica7\\Banderas\\" + bandera + "Escudo.png");
         }
     }
+    @Override
+    public String obtenerDescripcion() {
+        return bandera;
+    }
 }
