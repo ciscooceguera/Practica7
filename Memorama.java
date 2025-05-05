@@ -10,23 +10,35 @@ import java.util.HashMap;
 public class Memorama extends JFrame{
     private JTextArea puntosJugadores, cartasVolteadas;
     private ArrayList<JButton> tarjetas;
-    private int jugadores, puntosMaximos, contadorCartasAdivinadas;
-    private HashMap<Integer,Integer> numCartasVolteadas;
-    private int turno;
+    private int numJugadores, puntosMaximos, turno;
     private String figura;
     private ArrayList<JButton> tarjetasVolteadas;
-
+    private HashMap<Integer, Integer> jugadores;
+    private int[] cartasVolteadasConteo = new int[4];
+    private int jugadores, puntosMaximos, contadorCartasAdivinadas;
+    private HashMap<Integer,Integer> numCartasVolteadas;
     private boolean bloqueo = false;
+    private JButton salir;
+
     public Memorama(int numJugadores, int puntuacionMaxima, String figura) {
         super("Memorama");
         tarjetas = new ArrayList<>();
-        this.jugadores = numJugadores;
+        this.numJugadores = numJugadores;
         this.puntosMaximos = puntuacionMaxima;
         this.figura = figura;
         this.setLocationRelativeTo(null);
         numCartasVolteadas = new HashMap<>();
         tarjetasVolteadas = new ArrayList<>();
+        jugadores = new HashMap<>();
+        inicializarJugadores();
+        inicializarComponentes();
+        configurarVentana();
+        puntosJugadores.setText(getPuntajes());
+        cartasVolteadas.setText(getCartasVolteadas());
+        setLocationRelativeTo(null);
         turno = 1;
+        mostrarTurno();
+   
         inicializarComponentes();
         configurarVentana();
         setLocationRelativeTo(null);
@@ -59,6 +71,14 @@ public class Memorama extends JFrame{
             numCartasVolteadas.put(i,0);
         }
         System.out.println(tarjetas.size());
+        salir = new JButton("Salir");
+        salir.setPreferredSize(new Dimension(200, 50));
+        salir.setEnabled(false);
+        salir.setBackground(new Color(70,130,180));
+        salir.setForeground(Color.WHITE);
+        salir.setFocusPainted(false);
+        salir.setFont(new Font("Arial",Font.BOLD,15));
+        salir.setBorder(BorderFactory.createLineBorder(Color.WHITE, 2));
     }
     public String puntajesToString(){
         String mensajePuntajes = "";
@@ -182,11 +202,45 @@ public class Memorama extends JFrame{
         cartasVolteadas.setText(puntajesToString());
         textos.add(puntosJugadores);
         textos.add(cartasVolteadas);
+        JPanel boton = new JPanel();
+        boton.setLayout(new FlowLayout(FlowLayout.CENTER));
+        boton.setPreferredSize(new Dimension(660, 70));
+        boton.add(salir);
         this.add(tablero, BorderLayout.NORTH);
-        this.add(textos, BorderLayout.SOUTH);
-        this.setSize(750, 850);
+        this.add(textos, BorderLayout.CENTER);
+        this.add(boton, BorderLayout.SOUTH);
+        this.setSize(750, 950);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setVisible(true);
     }
 
+    public String getPuntajes(){
+        String puntajes = "";
+        for(int i=0; i<numJugadores; i++){
+            puntajes += "Jugador "+(i+1)+": "+jugadores.get(i)+"\n";
+        }
+        return puntajes;
+    }
+
+    public void inicializarJugadores(){
+        for(int i=0; i<numJugadores; i++){
+            cartasVolteadasConteo[i] = 0;
+            jugadores.put(i,0);
+        }
+    }
+
+    public String getCartasVolteadas(){
+        String cartasVolteadas = "";
+        for(int i=0; i<numJugadores; i++){
+            cartasVolteadas += "Jugador "+(i+1)+": "+cartasVolteadasConteo[i]+"\n";
+        }
+        return cartasVolteadas;
+    }
+
+    public void mostrarTurno(){
+        JOptionPane.showMessageDialog(null,
+                "Turno del jugador "+(turno),
+                "Turno actual",
+                JOptionPane.INFORMATION_MESSAGE);
+    }
 }
