@@ -23,4 +23,8 @@ public class RazaDeDragonBall extends Carta {
         Image imagenEscalada = imagen.getScaledInstance(alturaNueva, anchoNuevo, Image.SCALE_SMOOTH);
         return new ImageIcon(imagenEscalada);
     }
+    @Override
+    public String obtenerDescripcion() {
+        return raza;
+    }
 }
