@@ -5,16 +5,17 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.HashMap;
 
 public class Memorama extends JFrame{
     private JTextArea puntosJugadores, cartasVolteadas;
     private ArrayList<JButton> tarjetas;
-    private int jugadores, puntosMaximos;
+    private int jugadores, puntosMaximos, contadorCartasAdivinadas;
+    private HashMap<Integer,Integer> numCartasVolteadas;
+    private int turno;
     private String figura;
     private ArrayList<JButton> tarjetasVolteadas;
-    private JButton primeraCarta = null;
-    private JButton segundaCarta = null;
-    private int[] indicesCartas = new int[16];
+
     private boolean bloqueo = false;
     public Memorama(int numJugadores, int puntuacionMaxima, String figura) {
         super("Memorama");
@@ -22,13 +23,17 @@ public class Memorama extends JFrame{
         this.jugadores = numJugadores;
         this.puntosMaximos = puntuacionMaxima;
         this.figura = figura;
-        setLocationRelativeTo(null);
+        this.setLocationRelativeTo(null);
+        numCartasVolteadas = new HashMap<>();
+        tarjetasVolteadas = new ArrayList<>();
+        turno = 1;
         inicializarComponentes();
         configurarVentana();
-        this.setLocationRelativeTo(null);
-        tarjetasVolteadas = new ArrayList<>();
+        setLocationRelativeTo(null);
     }
-
+    public void cambiarTurno(){
+        turno = (turno%jugadores)+1;
+    }
     public void inicializarComponentes(){
         puntosJugadores = new JTextArea(20,20);
         puntosJugadores.setEditable(false);
@@ -50,7 +55,17 @@ public class Memorama extends JFrame{
             b.setEnabled(true);
             tarjetas.add(b);
         }
+        for (int i = 1; i<= jugadores; i++){
+            numCartasVolteadas.put(i,0);
+        }
         System.out.println(tarjetas.size());
+    }
+    public String puntajesToString(){
+        String mensajePuntajes = "";
+        for (int i=1; i<= jugadores; i++){
+            mensajePuntajes += "Jugador "+ (i) + ": " + numCartasVolteadas.get(i)+"\n";
+        }
+        return mensajePuntajes;
     }
     public void seleccionarCarta(JButton boton){
         if (bloqueo || tarjetasVolteadas.contains(boton)){
@@ -59,7 +74,6 @@ public class Memorama extends JFrame{
         Carta carta= (Carta) boton.getClientProperty("carta");
         boton.setIcon(carta.obtenerIcono());
         tarjetasVolteadas.add(boton);
-
         if (tarjetasVolteadas.size() == 2 && tarjetasVolteadas.get(0)!=boton){
             bloqueo = true;
             JButton b1 = tarjetasVolteadas.get(0);
@@ -71,7 +85,12 @@ public class Memorama extends JFrame{
                 b1.setEnabled(false);
                 b2.setEnabled(false);
                 bloqueo = false;
+                int numCartasAtinadas = numCartasVolteadas.get(turno);
+                numCartasVolteadas.remove(turno);
+                numCartasVolteadas.put(turno, numCartasAtinadas+1);
                 tarjetasVolteadas.clear();
+                cartasVolteadas.setText(puntajesToString());
+                contadorCartasAdivinadas+=1;
             }else{
                 // retraso
                 Timer timer = new Timer(1000, new ActionListener() {
@@ -81,6 +100,7 @@ public class Memorama extends JFrame{
                         b2.setIcon(null);
                         tarjetasVolteadas.clear();
                         bloqueo = false;
+                        cambiarTurno();
                     }
                 });
                 timer.setRepeats(false);
@@ -105,6 +125,37 @@ public class Memorama extends JFrame{
                     cartas.add(new Bandera(pais,true));
                     cartas.add(new Bandera(pais,false));
                 }
+                break;
+            case "Numero":
+                cartas.add(new Numero(1));
+                cartas.add(new Numero(6));
+                cartas.add(new Numero(7));
+                cartas.add(new Numero(8));
+                cartas.add(new Numero(9));
+                cartas.add(new Numero(10));
+                cartas.add(new Numero(13));
+                cartas.add(new Numero(14));
+                cartas.add(new Numero(22));
+                cartas.add(new Numero(27));
+                cartas.add(new Numero(41));
+                cartas.add(new Numero(50));
+                cartas.add(new Numero(77));
+                cartas.add(new Numero(78));
+                cartas.add(new Numero(88));
+                cartas.add(new Numero(99));
+                break;
+            case "Raza de Dragon Ball":
+                String[] razas = {"Angel","Buu","DemonioDelFrio","Dios","Humano","Kaio","Namek","Saiyan"};
+                String[] nombresPersonajes = {"Vados","Whis","Gordo","Kid","Freezer","KingCold","Bills","Champa","Krillin","Yamcha",
+                "Gordo","Shin","Dende","Picollo","Goku","Vegeta"};
+                int count = 0;
+                for (String raza: razas){
+                    cartas.add(new RazaDeDragonBall(raza,nombresPersonajes[count]));
+                    count++;
+                    cartas.add(new RazaDeDragonBall(raza,nombresPersonajes[count]));
+                    count++;
+                }
+                break;
         }
         Collections.shuffle(cartas);
         return cartas;
@@ -128,6 +179,7 @@ public class Memorama extends JFrame{
         cartasVolteadas.setFont(new Font("Monospaced", Font.PLAIN, 16));
         cartasVolteadas.setBackground(new Color(0, 255, 255));
         cartasVolteadas.setBorder(BorderFactory.createTitledBorder("Cartas Volteadas:"));
+        cartasVolteadas.setText(puntajesToString());
         textos.add(puntosJugadores);
         textos.add(cartasVolteadas);
         this.add(tablero, BorderLayout.NORTH);
