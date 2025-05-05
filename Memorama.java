@@ -9,7 +9,7 @@ import java.util.*;
 public class Memorama extends JFrame{
     private JTextArea turnoText, cartasVolteadas;
     private ArrayList<JButton> tarjetas;
-    private int numJugadores, puntosMaximos, turno;
+    private int numJugadores, turno;
     private String figura;
     private ArrayList<JButton> tarjetasVolteadas;
     private HashMap<Integer, Integer> jugadores;
@@ -20,12 +20,11 @@ public class Memorama extends JFrame{
     private JButton salir;
     private JButton instrucciones;
 
-    public Memorama(int numJugadores, int puntuacionMaxima, String figura) {
+    public Memorama(int numJugadores, String figura) {
         super("Memorama");
         turno = 1;
         tarjetas = new ArrayList<>();
         this.numJugadores = numJugadores;
-        this.puntosMaximos = puntuacionMaxima;
         this.figura = figura;
         this.setLocationRelativeTo(null);
         numCartasVolteadas = new HashMap<>();
@@ -42,6 +41,7 @@ public class Memorama extends JFrame{
 
 
     }
+    
     public void cambiarTurno(){
         turno = (turno%numJugadores)+1;
     }
@@ -237,7 +237,7 @@ public class Memorama extends JFrame{
             case "Raza de Dragon Ball":
                 String[] razas = {"Angel","Buu","DemonioDelFrio","Dios","Humano","Kaio","Namek","Saiyan"};
                 String[] nombresPersonajes = {"Vados","Whis","Gordo","Kid","Freezer","KingCold","Bills","Champa","Krillin","Yamcha",
-                "Gordo","Shin","Dende","Picollo","Goku","Vegeta"};
+                        "Gordo","Shin","Dende","Picollo","Goku","Vegeta"};
                 int count = 0;
                 for (String raza: razas){
                     cartas.add(new RazaDeDragonBall(raza,nombresPersonajes[count]));

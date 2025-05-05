@@ -16,7 +16,7 @@ public class Main {
         ventana.setVisible(true);
 
         // imagen
-        ImageIcon pic = new ImageIcon("C:\\Users\\RedBo\\OneDrive\\Escritorio\\POO\\Practica7\\ImageMain.png");
+        ImageIcon pic = new ImageIcon("C:\\Users\\joser\\IdeaProjects\\Practica 7\\ImageMain.png");
         JLabel image = new JLabel(pic);
         image.setBounds(0,0,500,500);
         ventana.setContentPane(image);
@@ -117,8 +117,8 @@ public class Main {
                             "Jugadores",
                             JOptionPane.QUESTION_MESSAGE);
                     numJugadores = Integer.parseInt(numJugadoresStr);
-                    Object[] botones = {"5", "10","25", "Todos"};
-                    int modalidadOpcion = JOptionPane.showOptionDialog(ventana,
+                    Object[] botones = {"Bandera", "Numero", "Raza de Dragon Ball"};
+                    int figuraMemorama = JOptionPane.showOptionDialog(ventana,
                             "Elige modalidad",
                             "Modalidad",
                             JOptionPane.DEFAULT_OPTION,
@@ -126,27 +126,6 @@ public class Main {
                             null,
                             botones,
                             botones[0]);
-                    int puntuacionMaxima = 0;
-                    switch (modalidadOpcion) {
-                        case 0:
-                            puntuacionMaxima = 5;
-                            break;
-                        case 1:
-                            puntuacionMaxima = 10;
-                            break;
-                        case 2:
-                            puntuacionMaxima = 25;
-                            break;
-                    }
-                    Object[] botones2 = {"Bandera", "Numero", "Raza de Dragon Ball"};
-                    int figuraMemorama = JOptionPane.showOptionDialog(ventana,
-                            "Elige modalidad",
-                            "Modalidad",
-                            JOptionPane.DEFAULT_OPTION,
-                            JOptionPane.QUESTION_MESSAGE,
-                            null,
-                            botones2,
-                            botones2[0]);
                     String figura = "";
                     switch (figuraMemorama) {
                         case 0:
@@ -159,7 +138,7 @@ public class Main {
                             figura = "Raza de Dragon Ball";
                             break;
                     }
-                    Memorama juego = new Memorama(numJugadores, puntuacionMaxima, figura);
+                    Memorama juego = new Memorama(numJugadores, figura);
                 }
             }
         });

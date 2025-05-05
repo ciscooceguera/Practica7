@@ -1,6 +1,7 @@
 package Carta;
 
 import javax.swing.*;
+import java.awt.*;
 
 public class RazaDeDragonBall extends Carta {
     private String raza,nombre;
@@ -15,7 +16,12 @@ public class RazaDeDragonBall extends Carta {
     }
     @Override
     public Icon obtenerIcono(){
-        return new ImageIcon("C:\\Users\\RedBo\\OneDrive\\Escritorio\\POO\\Practica7\\RazaDragonBall\\"+raza+nombre+".png");
+        ImageIcon imagenDB = new ImageIcon("C:\\Users\\joser\\IdeaProjects\\Practica 7\\RazaDragonBall\\"+raza+nombre+".png");
+        Image imagen = imagenDB.getImage();
+        int alturaNueva = 150;
+        int anchoNuevo = 150;
+        Image imagenEscalada = imagen.getScaledInstance(alturaNueva, anchoNuevo, Image.SCALE_SMOOTH);
+        return new ImageIcon(imagenEscalada);
     }
     @Override
     public String obtenerDescripcion() {
