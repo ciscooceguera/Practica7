@@ -4,32 +4,18 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="bcc9fb20-4e73-4332-9783-ca2831c72b43" name="Changes" comment="Agregado boton de salir para la finalización de juego">
+    <list default="true" id="bcc9fb20-4e73-4332-9783-ca2831c72b43" name="Changes" comment="Cambios menores en el codigo.">
       <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Carta/Bandera.java" beforeDir="false" afterPath="$PROJECT_DIR$/Carta/Bandera.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Carta/Numero.java" beforeDir="false" afterPath="$PROJECT_DIR$/Carta/Numero.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Carta/RazaDeDragonBall.java" beforeDir="false" afterPath="$PROJECT_DIR$/Carta/RazaDeDragonBall.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/Main.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Memorama.java" beforeDir="false" afterPath="$PROJECT_DIR$/Memorama.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Practica7/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Practica7/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Practica7/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Practica7/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Practica7/Carta/Bandera.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Practica7/Carta/Bandera.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/Practica7/Carta/Numero.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Practica7/Carta/Numero.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/Practica7/Carta/RazaDeDragonBall.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Practica7/Carta/RazaDeDragonBall.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Practica7/Memorama$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Practica7/Memorama$1.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Practica7/Memorama$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Practica7/Memorama$2.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/Practica7/Memorama.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Practica7/Memorama.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Practica7/RazaDragonBall/bills.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Practica7/RazaDragonBall/champa.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Practica7/RazaDragonBall/dende.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Practica7/RazaDragonBall/freezer.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Practica7/RazaDragonBall/goku.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Practica7/RazaDragonBall/kaioshin5.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Practica7/RazaDragonBall/kaioshin7.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Practica7/RazaDragonBall/kidbuu.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Practica7/RazaDragonBall/kingcold.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Practica7/RazaDragonBall/krillin.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Practica7/RazaDragonBall/majinbuu.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Practica7/RazaDragonBall/piccolo.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Practica7/RazaDragonBall/vados.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Practica7/RazaDragonBall/vegeta.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Practica7/RazaDragonBall/whis.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Practica7/RazaDragonBall/yamcha.png" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -71,22 +57,22 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;Application.Main.executor&quot;: &quot;Run&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;suffo&quot;,
-    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/joser/IdeaProjects/Practica 7/Numeros&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Application.Main.executor": "Run",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "git-widget-placeholder": "suffo",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "C:/Users/joser/IdeaProjects/Practica 7/Numeros",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\joser\IdeaProjects\Practica 7\Numeros" />
@@ -114,6 +100,9 @@
       <workItem from="1746312718780" duration="4366000" />
       <workItem from="1746400442323" duration="8317000" />
       <workItem from="1746416129565" duration="939000" />
+      <workItem from="1746417260130" duration="5097000" />
+      <workItem from="1746451370366" duration="53000" />
+      <workItem from="1746451429300" duration="373000" />
     </task>
     <task id="LOCAL-00001" summary="Creado tablero de Memorama y cambios en clase Main.">
       <option name="closed" value="true" />
@@ -163,7 +152,47 @@
       <option name="project" value="LOCAL" />
       <updated>1746413484489</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="Actualización de imagenes de razas de Dragon Ball. Escalado de imagenes de razas de Dragon Ball.">
+      <option name="closed" value="true" />
+      <created>1746423107396</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1746423107396</updated>
+    </task>
+    <task id="LOCAL-00008" summary="Actualización de imagenes de razas de Dragon Ball. Escalado de imagenes de razas de Dragon Ball.">
+      <option name="closed" value="true" />
+      <created>1746423159274</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1746423159274</updated>
+    </task>
+    <task id="LOCAL-00009" summary="Actualización de imagenes de razas de Dragon Ball. Escalado de imagenes de razas de Dragon Ball.">
+      <option name="closed" value="true" />
+      <created>1746423504086</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1746423504086</updated>
+    </task>
+    <task id="LOCAL-00010" summary="Cambios menores en el codigo.">
+      <option name="closed" value="true" />
+      <created>1746451398069</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1746451398069</updated>
+    </task>
+    <task id="LOCAL-00011" summary="Cambios menores en el codigo.">
+      <option name="closed" value="true" />
+      <created>1746451469117</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1746451469117</updated>
+    </task>
+    <option name="localTasksCounter" value="12" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -176,6 +205,8 @@
     <MESSAGE value="Agregadas imagenes de numeros restantes al proyecto" />
     <MESSAGE value="Agregada interfaz para conteo de cartas volteadas, puntajes de jugadores y turno de jugadores." />
     <MESSAGE value="Agregado boton de salir para la finalización de juego" />
-    <option name="LAST_COMMIT_MESSAGE" value="Agregado boton de salir para la finalización de juego" />
+    <MESSAGE value="Actualización de imagenes de razas de Dragon Ball. Escalado de imagenes de razas de Dragon Ball." />
+    <MESSAGE value="Cambios menores en el codigo." />
+    <option name="LAST_COMMIT_MESSAGE" value="Cambios menores en el codigo." />
   </component>
 </project>

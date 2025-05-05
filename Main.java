@@ -16,7 +16,7 @@ public class Main {
         ventana.setVisible(true);
 
         // imagen
-        ImageIcon pic = new ImageIcon("C:\\Users\\RedBo\\OneDrive\\Escritorio\\POO\\Practica7\\ImageMain.png");
+        ImageIcon pic = new ImageIcon("C:\\Users\\joser\\IdeaProjects\\Practica 7\\ImageMain.png");
         JLabel image = new JLabel(pic);
         image.setBounds(0,0,500,500);
         ventana.setContentPane(image);
@@ -83,22 +83,19 @@ public class Main {
         ventana.add(panel);
         // ventana visible
         ventana.setVisible(true);
-        // acciones
-        // boton jugar
-        jugar.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
 
-            }
-        });
+        // acciones
+
         // boton creditos
         creditos.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 JOptionPane.showMessageDialog(ventana, "Realizado por: \n" +
                                 "Francisco Javier Oceguera Gutierrez" +
                                 "\n José Ramón Suffo Peimbert",
-                        "Créditos", JOptionPane.DEFAULT_OPTION);
+                        "Créditos", JOptionPane.INFORMATION_MESSAGE);
             }
         });
+
         // boton salir
         salir.addActionListener(new AbstractAction() {
             @Override
@@ -106,8 +103,8 @@ public class Main {
                 System.exit(0);
             }
         });
-        //Boton Jugar
 
+        //Boton Jugar
         jugar.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 int numJugadores = 0;
@@ -144,4 +141,3 @@ public class Main {
         });
     }
 }
-

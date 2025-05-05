@@ -41,7 +41,7 @@ public class Memorama extends JFrame{
 
 
     }
-    
+
     public void cambiarTurno(){
         turno = (turno%numJugadores)+1;
     }
@@ -71,6 +71,7 @@ public class Memorama extends JFrame{
         for (int i = 1; i<= numJugadores; i++){
             numCartasVolteadas.put(i,0);
         }
+        System.out.println(tarjetas.size());
         salir = new JButton("Salir");
         salir.setPreferredSize(new Dimension(200, 50));
         salir.setEnabled(false);
@@ -230,23 +231,6 @@ public class Memorama extends JFrame{
                 for (Integer numero : numeros){
                     cartas.add(new Numero(numero));
                 }
-                /* Con imagenes
-                cartas.add(new Numero(1));
-                cartas.add(new Numero(6));
-                cartas.add(new Numero(7));
-                cartas.add(new Numero(8));
-                cartas.add(new Numero(9));
-                cartas.add(new Numero(10));
-                cartas.add(new Numero(13));
-                cartas.add(new Numero(14));
-                cartas.add(new Numero(22));
-                cartas.add(new Numero(27));
-                cartas.add(new Numero(41));
-                cartas.add(new Numero(50));
-                cartas.add(new Numero(77));
-                cartas.add(new Numero(78));
-                cartas.add(new Numero(88));
-                cartas.add(new Numero(99));*/
                 break;
             case "Raza de Dragon Ball":
                 String[] razas = {"Angel","Buu","DemonioDelFrio","Dios","Humano","Kaio","Namek","Saiyan"};
@@ -346,14 +330,6 @@ public class Memorama extends JFrame{
         this.setVisible(true);
     }
 
-    public String getPuntajes(){
-        String puntajes = "";
-        for(int i=0; i<numJugadores; i++){
-            puntajes += "Jugador "+(i+1)+": "+jugadores.get(i)+"\n";
-        }
-        return puntajes;
-    }
-
     public void inicializarJugadores(){
         for(int i=0; i<numJugadores; i++){
             cartasVolteadasConteo[i] = 0;
@@ -368,6 +344,4 @@ public class Memorama extends JFrame{
         }
         return cartasVolteadas;
     }
-
-
 }
