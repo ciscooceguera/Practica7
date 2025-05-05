@@ -3,19 +3,25 @@ package Carta;
 import javax.swing.*;
 
 public class Bandera extends Carta {
-    private JLabel imagen;
-    private String valor;
-    private boolean estaVolteada;
-    public Bandera(JLabel imagen, String valor){
-        this.imagen = imagen;
-        this.valor = valor;
-        estaVolteada = false;
-    }
-    public JLabel getImagen(){
-        return imagen;
+    private String bandera;
+    private boolean esBandera;
+    public Bandera(String bandera, boolean esBandera) {
+        this.bandera = bandera;
+        this.esBandera = esBandera;
     }
     @Override
-    public boolean cartaEsIgualAOtraCarta(Carta carta){
+    public boolean esIgual(Carta otraCarta){
+        if (otraCarta instanceof Bandera){
+            return this.bandera .equals( ((Bandera)otraCarta).bandera);
+        }
         return false;
+    }
+    @Override
+    public Icon obtenerIcono(){
+        if (esBandera) {
+            return new ImageIcon("C:\\Users\\RedBo\\OneDrive\\Escritorio\\POO\\Practica7\\Banderas\\" + bandera + ".png");
+        }else{
+            return new ImageIcon("C:\\Users\\RedBo\\OneDrive\\Escritorio\\POO\\Practica7\\Banderas\\" + bandera + "Escudo.png");
+        }
     }
 }
