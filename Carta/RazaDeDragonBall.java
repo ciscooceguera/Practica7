@@ -16,7 +16,7 @@ public class RazaDeDragonBall extends Carta {
     }
     @Override
     public Icon obtenerIcono(){
-        ImageIcon imagenDB = new ImageIcon("C:\\Users\\joser\\IdeaProjects\\Practica 7\\RazaDragonBall\\"+raza+nombre+".png");
+        ImageIcon imagenDB = new ImageIcon("C:\\Users\\RedBo\\OneDrive\\Escritorio\\POO\\Practica7\\RazaDragonBall\\"+raza+nombre+".png");
         Image imagen = imagenDB.getImage();
         int alturaNueva = 150;
         int anchoNuevo = 150;

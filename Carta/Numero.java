@@ -29,7 +29,7 @@ public class Numero extends Carta {
     }
     @Override
     public Icon obtenerIcono(){
-        return new ImageIcon("C:\\Users\\joser\\IdeaProjects\\Practica 7\\Numeros\\num"+numero+".png");
+        return new ImageIcon("C:\\Users\\RedBo\\OneDrive\\Escritorio\\POO\\Practica7\\Numeros\\num"+numero+".png");
     }
 
     @Override
