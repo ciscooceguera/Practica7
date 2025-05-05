@@ -5,28 +5,38 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.HashMap;
 
 public class Memorama extends JFrame{
     private JTextArea puntosJugadores, cartasVolteadas;
     private ArrayList<JButton> tarjetas;
-    private int jugadores, puntosMaximos;
+    private int numJugadores, puntosMaximos, turno;
     private String figura;
     private ArrayList<JButton> tarjetasVolteadas;
     private JButton primeraCarta = null;
     private JButton segundaCarta = null;
     private int[] indicesCartas = new int[16];
+    private HashMap<Integer, Integer> jugadores;
+    private int[] cartasVolteadasConteo = new int[4];
     private boolean bloqueo = false;
+
     public Memorama(int numJugadores, int puntuacionMaxima, String figura) {
         super("Memorama");
         tarjetas = new ArrayList<>();
-        this.jugadores = numJugadores;
+        this.numJugadores = numJugadores;
         this.puntosMaximos = puntuacionMaxima;
         this.figura = figura;
-        setLocationRelativeTo(null);
-        inicializarComponentes();
-        configurarVentana();
         this.setLocationRelativeTo(null);
         tarjetasVolteadas = new ArrayList<>();
+        jugadores = new HashMap<>();
+        inicializarJugadores();
+        inicializarComponentes();
+        configurarVentana();
+        puntosJugadores.setText(getPuntajes());
+        cartasVolteadas.setText(getCartasVolteadas());
+        setLocationRelativeTo(null);
+        turno = 1;
+        mostrarTurno();
     }
 
     public void inicializarComponentes(){
@@ -137,4 +147,33 @@ public class Memorama extends JFrame{
         this.setVisible(true);
     }
 
+    public String getPuntajes(){
+        String puntajes = "";
+        for(int i=0; i<numJugadores; i++){
+            puntajes += "Jugador "+(i+1)+": "+jugadores.get(i)+"\n";
+        }
+        return puntajes;
+    }
+
+    public void inicializarJugadores(){
+        for(int i=0; i<numJugadores; i++){
+            cartasVolteadasConteo[i] = 0;
+            jugadores.put(i,0);
+        }
+    }
+
+    public String getCartasVolteadas(){
+        String cartasVolteadas = "";
+        for(int i=0; i<numJugadores; i++){
+            cartasVolteadas += "Jugador "+(i+1)+": "+cartasVolteadasConteo[i]+"\n";
+        }
+        return cartasVolteadas;
+    }
+
+    public void mostrarTurno(){
+        JOptionPane.showMessageDialog(null,
+                "Turno del jugador "+(turno),
+                "Turno actual",
+                JOptionPane.INFORMATION_MESSAGE);
+    }
 }
