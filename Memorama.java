@@ -110,7 +110,6 @@ public class Memorama extends JFrame{
         return cartas;
     }
 
-
     public void configurarVentana(){
         this.setLayout(new BorderLayout());
         JPanel tablero = new JPanel();
