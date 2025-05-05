@@ -150,7 +150,11 @@ public class Memorama extends JFrame{
         }
     }
     public String mensajeGanador(){
-        return "Ha ganado el jugador " + getGanador();
+        String mensaje = getGanador();
+        if (mensaje == "Empate"){
+            return "Empate";
+        }
+        return "Ha ganado el jugador "+mensaje;
     }
     public String getGanador(){
         Integer posicion = 0;
@@ -159,6 +163,17 @@ public class Memorama extends JFrame{
             Integer valor = numCartasVolteadas.get(i);
             if (max<valor){
                 max = valor;
+            }
+        }
+        // evaluar empate
+        int count = 0;
+        for (int i = 1; i<=numJugadores; i++){
+            Integer valor = numCartasVolteadas.get(i);
+            if (max == valor){
+                count ++;
+                if (count == 2) {
+                    return "Empate";
+                }
             }
         }
         for (int i = 1 ; i<=numJugadores; i++){
